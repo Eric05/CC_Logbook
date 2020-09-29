@@ -95,19 +95,21 @@ public class Day_4 {
         return arr;
     }
 
-    // Bubblesort:
+    // Bubblesort: most efficient Implementation, breaks out if for loop runs without sorting
     public static Integer[] bubbleSorted(Integer[] arr) {
 
-        int lenOuter = arr.length;
-        int lenInner = arr.length - 1;
+        int len = arr.length;
         int temp = 0;
+        boolean isUnsorted = true;
 
-        for (int i = 0; i < lenOuter; i++) {
-            for (int j = 1; j < lenInner; j++) {
-                if (arr[j - 1] > arr[j]) {
-                    temp = arr[j - 1];
-                    arr[j - 1] = arr[j];
+        while (isUnsorted) {
+            isUnsorted = false;
+            for (int j = 0; j < len-1; j++) {
+                if (arr[j] < arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j ] = arr[j + 1];
                     arr[j] = temp;
+                    isUnsorted = true;
                 }
             }
         }
@@ -115,7 +117,7 @@ public class Day_4 {
     }
 
     // Insertionsort:
-   public static Integer[] insertionSorted(Integer arr[]) {
+    public static Integer[] insertionSorted(Integer arr[]) {
         int len = arr.length;
 
         for (int i = 1; i < len; i++) {
@@ -132,7 +134,7 @@ public class Day_4 {
     }
 }
 
-// -------------------------------------------------------------- 
+// --------------------------------------------------------------
 /*
 Shift array to left:
    public static void shift(Integer[] arr) {

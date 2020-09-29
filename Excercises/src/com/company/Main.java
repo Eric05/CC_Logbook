@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.September.Day_1;
-import com.company.September.Day_4;
-import com.company.September.Day_5;
-import com.company.September.Day_6;
+import com.company.September.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +9,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        var arr = new int[]{1,2,-5,3,10,-2,-1,-3,10,3,6,9};
-String str = "abcd";
+        var years = Day_7.getLeepYears(1800, 2040);
+        printLeepYears(years);
 
- Day_4.printArrow2(6, "x");
     }
 
-
-
+    public static void printLeepYears(List<String> years) {
+        var counter = 0;
+        for (var y : years) {
+            counter++;
+            if (counter % 20 == 0) {
+                System.out.println("");
+            }
+            System.out.print((char) 27 + "[32m" + y + ", ");
+        }
+    }
 }
 
