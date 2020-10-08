@@ -98,19 +98,24 @@ public class Day_4 {
     // Bubblesort: most efficient Implementation, breaks out if for loop runs without sorting
     public static Integer[] bubbleSorted(Integer[] arr) {
 
+        int counter = 0;
+
         int len = arr.length;
         int temp = 0;
         boolean isUnsorted = true;
 
         while (isUnsorted) {
-            isUnsorted = false;
             for (int j = 0; j < len-1; j++) {
+                isUnsorted = false;
                 if (arr[j] < arr[j + 1]) {
                     temp = arr[j];
-                    arr[j ] = arr[j + 1];
+                    arr[j] = arr[j + 1];
                     arr[j] = temp;
                     isUnsorted = true;
                 }
+
+                counter++;
+                System.out.println((char) 27 + "[31m" + +counter + " runs needed");
             }
         }
         return arr;
