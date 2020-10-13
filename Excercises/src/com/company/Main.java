@@ -2,10 +2,13 @@ package com.company;
 
 import com.company.Oktober.Day_10;
 import com.company.Oktober.Day_11;
+import com.company.Oktober.Day_12;
 import com.company.Oktober.Day_9;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -14,52 +17,35 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+          var analyzer = new Day_12();
+
+        System.out.println(analyzer.getChars());
+        // any char [a-zA-Z0-9] ?
+        System.out.println(analyzer.getSpokenChars());
+        System.out.println(analyzer.countWords());
+        System.out.println(analyzer.getLongestWord());
+        // if digit 2 would be shortes
+        System.out.println(analyzer.getShortestWord());
+        // 24 + 3 * Hesses
+        System.out.println(analyzer.countHesse());
+        // more on just split if using clean list
+        System.out.println(analyzer.countOnlyLowerOrUpper());
+
         List<Integer> list = Arrays.asList(new Integer[]{3, 5, 14, 18, 23, 22});
         int[] nums = new int[]{5, 2, 4, 22, 4, 34, 5};
 
-       int result = addition();
+        //long result = Day_11.printFactorial(5, new HashMap<>());
 
-        System.out.println(result);
-        //sayHello();
-        //var res = Day_10.getPasc(5);
-        //System.out.println( res);
-        //Day_11.sayHello();
-
-        //Day_10.printTriangle(500);
-
-        //Day_9.rec("hello", 6, 1);
-        //Day_8.compareBubblessorts();
-
-        String[] names = {"Dan", "Benny", "clyde", "Eric", "Simpson", "becky", "Dan", "Olli"};
-        List<String> listNames = Arrays.asList(names);
-        var erg = Day_9.filterNums(listNames);
+        String[] names = {"Dan.", " Benny", "clyde>", "Eric", "Simpson", "becky", "Dan", "Olli"};
 
 
-        // Day_8_Schoolclass.printInfo(names);
-    }
+        var cleanNames = Arrays.asList(names);
+        cleanNames = cleanNames.stream().map(s -> s = s.replaceAll("[^a-zA-Z0-9]", "")).collect(Collectors.toList());
 
-    //       Rückgabetyp funktions name
-    public static String returnSeven() {
-
-        return "7";
-
-    }
-    public static void sayHello() {
-
-        int a = 12;
-        int b = 23;
-        int erg = a +  b;
-        System.out.println(erg);
 
     }
 
-    public static int addition(){
-
-        int a = 100;
-        int b = 50;
-        int erg = a - b;
-
-        return erg;
-    }
 }
+
+
 
