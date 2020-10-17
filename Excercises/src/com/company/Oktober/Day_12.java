@@ -2,6 +2,8 @@ package com.company.Oktober;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,15 +30,10 @@ public class Day_12 {
     private String input;
     private String cleanInput;
     private List<String> cleanList = new ArrayList<>();
-    private String[] words;
 
     // getters
     public List<String> getCleanList() {
         return cleanList;
-    }
-
-    public String[] getWords() {
-        return words;
     }
 
     public String getCleanInput() {
@@ -55,7 +52,6 @@ public class Day_12 {
     // default constructor
     public Day_12() {
         setInput(readFile(PATH));
-        words = getInput().split(" ");
         cleanInput = generateCleanString();
         cleanList = generateCleanList();
     }
@@ -71,8 +67,8 @@ public class Day_12 {
     }
 
     public int getSpokenChars() {
-
-        return getCleanInput().length();
+        String noSpace = getCleanInput().replaceAll("\\s{1,}", "");
+        return noSpace.length();
     }
 
     public int countWords() {
@@ -80,19 +76,21 @@ public class Day_12 {
     }
 
     public String getLongestWord() {
-        var clean = new ArrayList<String>(getCleanList());
+        var clean = new ArrayList<>(getCleanList());
         clean.sort(comparing(String::length));
 
         return clean.get(clean.size() - 1);
     }
+
 
     public String getShortestWord() {
         var clean = new ArrayList<String>(getCleanList());
         Pattern isDigit = Pattern.compile("-?\\d+(\\.\\d+)?");
 
         clean.sort(comparing(String::length).thenComparing(String::compareTo));
-        var cleanListWithoutDigits = clean.stream().filter(s -> !isDigit.matcher(s).matches()).collect(Collectors.toList());
-
+        var cleanListWithoutDigits = clean.stream()
+                                                      .filter(s -> !isDigit.matcher(s).matches())
+                                                      .collect(Collectors.toList());
         return cleanListWithoutDigits.get(0);
     }
 
@@ -153,7 +151,7 @@ public class Day_12 {
         return cleanList;
     }
 
-    private String readFile(String path) {
+    private String readFile( String path) {
         StringBuilder sb = new StringBuilder();
         try {
             File myObj = new File(path);
@@ -168,5 +166,17 @@ public class Day_12 {
         return sb.toString();
     }
 
+    private void writeFile(String text, String path){
+
+        try {
+            var  wr = new FileWriter(path);
+            wr.write(text);
+            wr.close();
+            // System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            // System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
 }

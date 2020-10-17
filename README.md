@@ -1,5 +1,5 @@
 # CC_Logbook
-Logbook Coding Campus and Challenges
+Logbook Coding Campus and various Challenges
 
 ## September 
 warm up excercises
@@ -11,6 +11,9 @@ Day 10: Recursion: Pascals Triangle with Memoization. ( check Day 6 !)
 
 Day 11: Recursion: Simpler Example - Factorial, Strings, Regex
 Day 12: Github Installation / String repetition / Text Analasysis
+Day 13: Normalizing text / regex with capturing groups
 
+Day 14: Analyze Hesse Text / Sorting with Lamda / String comparator
+Day 15: Installing and using Github
 
 ## November

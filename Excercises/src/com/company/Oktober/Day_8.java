@@ -62,7 +62,6 @@ public class Day_8 {
         System.out.println(Arrays.toString(arr));
     }
 
-    // Sort String Array
     public static String[] bubbleSorted_Slow(String[] arr) {
         int counter = 0;
         int len = arr.length;
@@ -74,10 +73,11 @@ public class Day_8 {
                     temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j] = temp;
-                }
+
                 counter++;
                 System.out.println(counter + " runs needed");
-            }
+        }
+      }
         return arr;
     }
 
