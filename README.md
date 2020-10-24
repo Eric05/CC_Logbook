@@ -5,15 +5,17 @@ Logbook Coding Campus and various Challenges
 warm up excercises
 
 ## October
-Day 8: Bubblesort optimized // Schoolclass
-Day 9: Sorting Alogrithms
-Day 10: Recursion: Pascals Triangle with Memoization. ( check Day 6 !) 
+Day 8: Bubblesort optimized // Schoolclass \
+Day 9: Sorting Alogrithms \
+Day 10: Recursion: Pascals Triangle with Memoization. ( check Day 6 !) \
 
-Day 11: Recursion: Simpler Example - Factorial, Strings, Regex
-Day 12: Github Installation / String repetition / Text Analasysis
-Day 13: Normalizing text / regex with capturing groups
+Day 11: Recursion: Simpler Example - Factorial, Strings, Regex \
+Day 12: Github Installation / String repetition / Text Analasysis \
+Day 13: Normalizing text / regex with capturing groups \
 
-Day 14: Analyze Hesse Text / Sorting with Lamda / String comparator
-Day 15: Installing and using Github
+Day 14: Analyze Hesse Text / Sorting with Lamda / String comparator \
+Day 15: Installing and using Github / Random String \
+Day 16: Random numbers / Currency Calculator / Loop with Random \
+Day 17: Random String / Math.round / validate Integer input \
 
 ## November
