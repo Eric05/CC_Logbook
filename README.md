@@ -16,6 +16,8 @@ Day 13: Normalizing text / regex with capturing groups \
 Day 14: Analyze Hesse Text / Sorting with Lamda / String comparator \
 Day 15: Installing and using Github / Random String \
 Day 16: Random numbers / Currency Calculator / Loop with Random \
+
 Day 17: Random String / Math.round / validate Integer input \
+Day 18: Atm - Bankomat
 
 ## November

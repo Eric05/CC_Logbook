@@ -33,18 +33,29 @@ public class AIController {
         return possibleMoves.get(randomSize);
     }
 
-    // x = human player - > maximizing (bool isMax)
-    public Move getBestMove(GameState g, boolean isMax, String currentPlayer, String otherPlayer, int depth) throws Exception {
+    /***
+     *
+     * @param g
+     * @param isMax maximizing player heading for score 1
+     * @param currentPlayer
+     * @param otherPlayer
+     * @param depth search depth -> max = 9 but with >= 2  in TTT is already unbeatable (i think)
+     * @param alpha in TTT use case alpha is hardcoded max score 1 -> recursion stops if terminal position reached
+     * @param beta hard coded - 1
+     * @return
+     * @throws Exception
+     */
+    public Move getBestMove(GameState g, boolean isMax, String currentPlayer, String otherPlayer, int depth, int alpha, int beta) throws Exception {
 
         int score = g.EvaluateState();
 
         if (depth == getDepth()) {
             return new Move((score));
         }
+
         if (score != 2) {
             return new Move(score);
         }
-
         Move bestMove = new Move();
 
         // Initial value of move reversed
@@ -60,14 +71,23 @@ public class AIController {
         for (var move : nextMoves) {
             g.ApplyMove(move);
             if (isMax) {
-                Move possibleBestMove = getBestMove(g, !isMax, otherPlayer, currentPlayer, depth + 1);
+                // Alpha Beta Pruning
+                if (score == alpha) {
+                    return new Move((score));
+                }
+                Move possibleBestMove = getBestMove(g, !isMax, otherPlayer, currentPlayer, depth + 1, alpha, beta);
                 if (possibleBestMove.getScore() > bestMove.getScore()) {
                     bestMove.setX(move.getX());
                     bestMove.setY(move.getY());
                     bestMove.setScore(possibleBestMove.getScore());
                 }
             } else {
-                Move possibleBestMove = getBestMove(g, !isMax, otherPlayer, currentPlayer, depth + 1);
+                // Alpha Beta Pruning
+                if (score == beta){
+                    return new Move((score));
+                }
+
+                Move possibleBestMove = getBestMove(g, !isMax, otherPlayer, currentPlayer, depth + 1,alpha,beta);
                 if (possibleBestMove.getScore() < bestMove.getScore()) {
                     bestMove.setX(move.getX());
                     bestMove.setY(move.getY());

@@ -1,6 +1,6 @@
 package at.challenges.Bat;
 
-public class SplitArray {
+public class SplitArray_rec {
 
     public static boolean splitArray(int[] nums) {
 

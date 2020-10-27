@@ -1,18 +1,21 @@
 package com.company.Oktober.Day_18_atm;
 
+import java.io.IOException;
+
 public class MoneyOperations {
 
     private static double amount = 1000;
 
-    public static double getAmount(){
+    public static double getAmount() {
         return amount;
     }
 
-    public static void payMoney(double money){
+    public static void payMoney(double money) {
         MoneyOperations.amount += money;
     }
 
-    public static void getMoney(double money){
+    public static void getMoney(double money) {
         MoneyOperations.amount -= money;
     }
+
 }

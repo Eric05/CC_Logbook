@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        // TODO - alpha/beta pruning
+        // TODO - alpha/beta pruning improved
         // TODO - Interface for view, controller ... abstract method for gameflow and simulation
         // TODO - const for length ... const for MIN and MAX value
         // TODO - shuffle List of equal moves for more fun :)
@@ -25,7 +25,7 @@ public class Main {
             }
 
             ai.setDepth(1);
-            var movY = ai.getBestMove(g, true, "x", "o", 0);
+            var movY = ai.getBestMove(g, true, "x", "o", 0, 1, -1);
             g.ApplyMove(movY, "x");
             g.updateGameState();
 
@@ -43,7 +43,7 @@ public class Main {
 
             g.updateGameState();
             ai.setDepth(9);
-            var movX = ai.getBestMove(g, false, "o", "x", 0);
+            var movX = ai.getBestMove(g, false, "o", "x", 0, 1, -1);
             g.ApplyMove(movX);
 
             System.out.println("-------------------------------------");
