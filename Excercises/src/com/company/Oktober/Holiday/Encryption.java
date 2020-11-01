@@ -88,4 +88,23 @@ public class Encryption {
 
         return text;
     }
+
+    // create charmap with jagged array from String
+    public static Character[][] createCharMap(String text, String delim) {
+
+        var lines = text.split(delim);
+        var len = lines.length;
+        Character[][] charMap = new Character[len][];
+
+        for (int i = 0; i < len; i++) {
+            if (lines[i] != null) {
+                var line = lines[i];
+                charMap[i] = new Character[line.length()];
+                for (int j = 0; j < charMap[i].length; j++) {
+                    charMap[i][j] = line.charAt(j);
+                }
+            }
+        }
+        return charMap;
+    }
 }

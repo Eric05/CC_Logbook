@@ -1,6 +1,7 @@
 public class Main {
 
     public static final String BLUE = "\u001B[34m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) throws Exception {
 
@@ -30,7 +31,7 @@ public class Main {
             g.updateGameState();
 
             System.out.println("_____________________________________");
-            System.out.println(BLUE + "x plays:");
+            System.out.println(BLUE + "x plays:" + ANSI_RESET);
             System.out.println("-------------------------------------");
             Thread.sleep(1000);
             printGameState(g);
@@ -150,7 +151,7 @@ public class Main {
                 if (g.updateGameState()[i][j] == " ") {
                     System.out.print("_ ");
                 } else if (g.updateGameState()[i][j] == "x") {
-                    System.out.print("x ");
+                    System.out.print(BLUE + "x " + ANSI_RESET);
                 } else {
                     System.out.print("o ");
                 }
