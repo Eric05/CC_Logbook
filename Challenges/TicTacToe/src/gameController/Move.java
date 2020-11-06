@@ -1,3 +1,5 @@
+package gameController;
+
 public class Move {
 
     private int score;

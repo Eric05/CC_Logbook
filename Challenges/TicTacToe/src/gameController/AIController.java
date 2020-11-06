@@ -1,3 +1,8 @@
+package gameController;
+
+import gameController.GameState;
+import gameController.Move;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -72,9 +77,9 @@ public class AIController {
             g.ApplyMove(move);
             if (isMax) {
                 // Alpha Beta Pruning
-                if (score == alpha) {
+         /*       if (score == alpha) {
                     return new Move((score));
-                }
+                }*/
                 Move possibleBestMove = getBestMove(g, !isMax, otherPlayer, currentPlayer, depth + 1, alpha, beta);
                 if (possibleBestMove.getScore() > bestMove.getScore()) {
                     bestMove.setX(move.getX());
@@ -83,9 +88,9 @@ public class AIController {
                 }
             } else {
                 // Alpha Beta Pruning
-                if (score == beta){
+         /*       if (score == beta){
                     return new Move((score));
-                }
+                }*/
 
                 Move possibleBestMove = getBestMove(g, !isMax, otherPlayer, currentPlayer, depth + 1,alpha,beta);
                 if (possibleBestMove.getScore() < bestMove.getScore()) {

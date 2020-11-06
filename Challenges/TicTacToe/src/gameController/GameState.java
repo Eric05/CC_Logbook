@@ -1,3 +1,7 @@
+package gameController;
+
+import gameController.Move;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,7 +124,7 @@ public class GameState {
     // apply move to gameState - if human makes illegal move...
     public void ApplyMove(Move m) throws Exception {
         if (gameField[m.getY()][m.getX()] != " ") {
-            throw new Exception("Invalid Move");
+            throw new Exception("Invalid Players.Move");
         }
         gameField[m.getY()][m.getX()] = m.getPlayerSymbol();
     }
@@ -128,7 +132,7 @@ public class GameState {
     // overload for output
     public void ApplyMove(Move m, String playerSymbol) throws Exception {
         if (gameField[m.getY()][m.getX()] != " ") {
-            throw new Exception("Invalid Move");
+            throw new Exception("Invalid Players.Move");
         }
         gameField[m.getY()][m.getX()] = playerSymbol;
     }

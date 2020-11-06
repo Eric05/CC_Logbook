@@ -21,3 +21,5 @@ Day 17: Random String / Math.round / validate Integer input \
 Day 18: Atm - Bankomat
 
 ## November
+Day 19: 2D Array / Evaluation for "4 Gewinnt"
+Day 20: 4 Gewinnt / Print name Letter
