@@ -53,15 +53,15 @@ public class AIController {
     public Move getBestMove(GameState g, boolean isMax, String currentPlayer, String otherPlayer, int depth, int alpha, int beta) throws Exception {
 
         int score = g.EvaluateState();
+        Move bestMove = new Move();
 
-        if (depth == getDepth()) {
-            return new Move((score));
-        }
+       /* if (depth == getDepth()) {
+            return bestMove;
+        }*/
 
         if (score != 2) {
             return new Move(score);
         }
-        Move bestMove = new Move();
 
         // Initial value of move reversed
         if (isMax) {
@@ -77,8 +77,8 @@ public class AIController {
             g.ApplyMove(move);
             if (isMax) {
                 // Alpha Beta Pruning
-         /*       if (score == alpha) {
-                    return new Move((score));
+/*                if (score == alpha) {
+                    return bestMove;
                 }*/
                 Move possibleBestMove = getBestMove(g, !isMax, otherPlayer, currentPlayer, depth + 1, alpha, beta);
                 if (possibleBestMove.getScore() > bestMove.getScore()) {
@@ -88,8 +88,8 @@ public class AIController {
                 }
             } else {
                 // Alpha Beta Pruning
-         /*       if (score == beta){
-                    return new Move((score));
+          /*      if (score == beta){
+                    return bestMove;
                 }*/
 
                 Move possibleBestMove = getBestMove(g, !isMax, otherPlayer, currentPlayer, depth + 1,alpha,beta);

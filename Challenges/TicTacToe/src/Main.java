@@ -12,7 +12,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        // TODO - alpha/beta pruning improved - performance test
+        // !!!! TODO - fix depth
+        // TODO - fix alpha/beta pruning - performance test
         // TODO - Interface for view, controller ... abstract method for gameflow and simulation
         // TODO - const for length ... const for MIN and MAX value
         // TODO - shuffle List of equal moves for more fun :)

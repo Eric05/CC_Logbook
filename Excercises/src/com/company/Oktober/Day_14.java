@@ -84,6 +84,7 @@ public class Day_14 {
             if (n1 % 2 == 0) {
                 counter++;
             } else {
+
                 counter--;
             }
             if (n1 % 3 == 0) {

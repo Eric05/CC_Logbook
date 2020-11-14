@@ -36,7 +36,7 @@ public class GameController {
 
     public void simulate() throws Exception {
         var sim = new Simulation();
-        sim.simulate(9,2);
+        sim.simulate(9,1);
     }
 
     public void humanVsAI() throws Exception {

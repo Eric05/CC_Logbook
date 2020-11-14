@@ -48,9 +48,9 @@ public class Simulation {
             }
 
             g.updateGameState();
-            ai.setDepth(3);
-            var movY = ai.getRandomMove(g,"o");
-            //var movY = ai.getBestMove(g, false, "o", "x", 0, 1, -1);
+            ai.setDepth(1);
+            //var movY = ai.getRandomMove(g,"o");
+            var movY = ai.getBestMove(g, false, "o", "x", 0, 1, -1);
             g.ApplyMove(movY);
 
             System.out.println("");

@@ -6,14 +6,14 @@ warm up excercises
 
 ## October
 Day 8: Bubblesort optimized // Schoolclass \
-Day 9: Sorting Alogrithms \
+Day 9: Sorting Alogrithms \ Compare method
 Day 10: Recursion: Pascals Triangle with Memoization. ( check Day 6 !) \
 
 Day 11: Recursion: Simpler Example - Factorial, Strings, Regex \
 Day 12: Github Installation / String repetition / Text Analasysis \
 Day 13: Normalizing text / regex with capturing groups \
 
-Day 14: Analyze Hesse Text / Sorting with Lamda / String comparator \
+Day 14: Analyze Hesse Text / Sorting with Lamda / own comparator
 Day 15: Installing and using Github / Random String \
 Day 16: Random numbers / Currency Calculator / Loop with Random \
 
@@ -23,3 +23,8 @@ Day 18: Atm - Bankomat
 ## November
 Day 19: 2D Array / Evaluation for "4 Gewinnt"
 Day 20: 4 Gewinnt / Print name Letter
+Day 21: Snake 
+
+Day 22: Filter with lamda
+Day 23: Employee list / salary / hourly wage . own object comparators by name, money...
+Day 24: Create unique Array from other without using any Collections / read Excel from corrupt file

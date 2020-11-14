@@ -39,7 +39,7 @@ public class Day_20_PrintSquare {
 
         for (int row = 0; row < len; row++) {
             for (int col = 0; col < len; col++) {
-                System.out.print(chars[row][col]);
+                System.out.print("\t" + chars[row][col]);
             }
             System.out.println();
         }
@@ -58,6 +58,20 @@ public class Day_20_PrintSquare {
 
         for (int i = rowPos; i < len; i++) {
             matrix[i][colPos] = ch;
+        }
+    }
+
+    public static void drawVector(char[][] matrix, int startRow, int endRow, int startCol, int endCol, char ch ){
+
+
+        for (int row = startRow; row < endRow; row++) {
+            for (int col = startCol; col < endCol; col++) {
+                boolean isOut = row >= matrix.length || col >= matrix.length;
+                if (!isOut) {
+                    matrix[row][col] = ch;
+                }
+                row += 2;
+            }
         }
     }
 
