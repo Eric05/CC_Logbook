@@ -1,6 +1,7 @@
 package com.company.Tests;
 
 import com.company.Oktober.Day_8;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.LinkedHashSet;

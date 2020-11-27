@@ -28,3 +28,15 @@ Day 21: Snake
 Day 22: Filter with lamda
 Day 23: Employee list / salary / hourly wage . own object comparators by name, money...
 Day 24: Create unique Array from other without using any Collections / read Excel from corrupt file
+
+Day 25: Offener Haushalt / work with large csv / searching and sorting
+	-> fixing corrupt excel: https://github.com/Eric05/JavascriptSnippets/tree/main/Java_FactoryPattern/FieldConditions
+	
+Day 26: Searching for n max or min in O(n) with Priority Queue
+
+Day 27: Knight Move
+
+Day 28: Rook Move
+
+Day 29: OOP Maven Lombok. Override toString(), equals()
+

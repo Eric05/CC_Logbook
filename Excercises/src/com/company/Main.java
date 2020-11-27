@@ -1,43 +1,38 @@
 package com.company;
 
 
-import com.company.November.Comparator.Day_23;
-import com.company.November.Comparator.Employee;
-import com.company.November.Comparator.Employees;
-import com.company.November.Day_22;
-import com.company.November.Day_24;
+import com.company.November.Day_29.Human;
+import com.company.November.Day_29.View;
+import com.company.November.MovingKnight.GameController;
+import com.company.November.camera.Camera;
+import com.company.November.camera.CameraView;
+import com.company.November.camera.MockPicture;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    static Random r = new Random();
 
+    public static void main(String[] args) {
 
+        Camera cam = new Camera("nikon", 2020, 200,true);
 
-        var list = Day_24.getExcelFromFile("C:\\dev\\Stundenliste.txt",2, ",");
+        for (int i = 0; i < 7; i++) {
+            cam.makePicture();
+        }
 
-        Day_24.isValidInputAdvanced("C:\\dev\\Stundenliste.txt", ",");
+        var pictures = cam.getPictures();
+        CameraView.printAllPictures(pictures);
 
-        System.out.println(list.size());
-
-
-
-/*        var employees = new Employees();
-        var d = new Day_22();
-        var hours = d.sumHours(d.getExcelFromFile("C:\\dev\\Stundenliste.txt",2, ","));
-        var income = d.getIncome("C:\\dev\\Lohn.txt");*/
-
-/*        Day_23.getMonthList(hours, income);
-        Day_23.printInfo();
-        Day_23.generateMonthlyFile("C:\\dev\\Abrechnung", "Nov");*/
+        var s = cam.searchPicture("natur");
     }
+
+
 }
-
-
 
 
 
