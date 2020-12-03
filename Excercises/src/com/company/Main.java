@@ -8,6 +8,10 @@ import com.company.November.camera.Camera;
 import com.company.November.camera.CameraView;
 import com.company.November.camera.MockPicture;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,22 +19,14 @@ import java.util.Random;
 
 public class Main {
 
-    static Random r = new Random();
+    public static void main(String[] args) throws IOException {
 
-    public static void main(String[] args) {
+        var path = "C:\\dev\\Adresses.txt";
 
-        Camera cam = new Camera("nikon", 2020, 200,true);
-
-        for (int i = 0; i < 7; i++) {
-            cam.makePicture();
-        }
-
-        var pictures = cam.getPictures();
-        CameraView.printAllPictures(pictures);
-
-        var s = cam.searchPicture("natur");
+        File file = new File(path);
+        file.createNewFile();
+        Files.writeString(Path.of(path), "Hallo");
     }
-
 
 }
 

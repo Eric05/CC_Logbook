@@ -1,4 +1,5 @@
-import lombok.var;
+package human;
+
 
 import java.util.ArrayList;
 import java.util.List;
