@@ -1,4 +1,4 @@
-package designPatterns.Strategy;
+package designPatterns.strategy;
 
 public class multiplication implements numberStrategy {
     @Override

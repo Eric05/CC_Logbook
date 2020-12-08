@@ -1,4 +1,4 @@
-package designPatterns.Factory;
+package designPatterns.factory;
 
 public class greetFactory {
 
