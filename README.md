@@ -40,3 +40,4 @@ Day 28: Rook Move
 
 Day 29: OOP Maven Lombok. Override toString(), equals()
 
+OOP -> from now we use common repo...
