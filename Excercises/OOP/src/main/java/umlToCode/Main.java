@@ -13,6 +13,8 @@ public class Main {
         Building b = new Building("FK", rooms);
 
   b = null;
+        System.out.println(b);
+
 
 
     }

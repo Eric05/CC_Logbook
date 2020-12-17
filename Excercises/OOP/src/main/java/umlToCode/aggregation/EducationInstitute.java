@@ -1,5 +1,6 @@
 package umlToCode.aggregation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +14,9 @@ public class EducationInstitute {
     private String name;
     private List<Course> courses;
 
-    public EducationInstitute(String name) {
+    public EducationInstitute(String name, List<Course> courses) {
         this.name = name;
+        this.courses = courses;
     }
 
     @Override
