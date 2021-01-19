@@ -6,8 +6,10 @@ import java.util.List;
 public class Simulation {
     public static void simulate() {
 
-        Restaurant italy = new Restaurant("Italy");
-        List<CardItem> card = new InMemoryCardItems().getCardItems();
+        Restaurant italy = new Restaurant();
+
+        var cardDao = new InMemoryCardItems();
+        List<CardItem> card = cardDao.getCardItems();
 
         italy.showFreeTables();
 
@@ -37,7 +39,7 @@ public class Simulation {
         }
 
         var orders = italy.getOrders();
-        italy.produceOrders(orders);
+        italy.produceOrders();
         italy.serveOrders(orders);
         italy.getCash(orders);
 

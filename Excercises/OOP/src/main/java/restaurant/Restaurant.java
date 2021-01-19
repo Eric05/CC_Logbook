@@ -1,6 +1,5 @@
 package restaurant;
 
-import restaurant.data.Content;
 import restaurant.data.InMemoryCardItems;
 import restaurant.data.InMemoryTables;
 
@@ -8,16 +7,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Restaurant {
-    private final String name;
     private final List<Table> tables;
     private final List<CardItem> card;
 
-    public Restaurant(String name) {
-        this.name = name;
-        Content dao = new InMemoryTables();
-        this.tables = dao.getTables();
-        dao = new InMemoryCardItems();
-        this.card = dao.getCardItems();
+    public Restaurant() {
+        var tableDao = new InMemoryTables();
+        this.tables = tableDao.getTables();
+        var cardDao = new InMemoryCardItems();
+        this.card = cardDao.getCardItems();
     }
 
     public void showFreeTables() {
@@ -36,8 +33,10 @@ public class Restaurant {
     }
 
     public void setTableForGroup(Group group) {
-        List<Table> freeTables = tables.stream().filter(Table::isFree).collect(Collectors.toList());
-        freeTables.sort(Comparator.comparingInt(Table::getPlaces));
+        List<Table> freeTables = tables.stream().
+                filter(Table::isFree).
+                sorted(Comparator.comparingInt(Table::getPlaces)).
+                collect(Collectors.toList());
 
         for (Table freeTable : freeTables) {
             if (freeTable.getPlaces() >= group.getGroup().size()) {
@@ -63,7 +62,9 @@ public class Restaurant {
                 }
                 List<CardItem> orderItems = new ArrayList<>();
                 for (String tableOrder : tableOrders) {
-                    CardItem crd = card.stream().filter(c -> c.getName().equals(tableOrder)).findFirst().get();
+                    CardItem crd = card.stream().
+                            filter(c -> c.getName().equals(tableOrder)).
+                            findFirst().orElse(null);
                     orderItems.add(crd);
                 }
                 orders.put(tableId, orderItems);
@@ -73,7 +74,7 @@ public class Restaurant {
         return orders;
     }
 
-    public void produceOrders(Map<Integer, List<CardItem>> orders) {
+    public void produceOrders() {
         System.out.println("all orders produced");
         System.out.println();
     }

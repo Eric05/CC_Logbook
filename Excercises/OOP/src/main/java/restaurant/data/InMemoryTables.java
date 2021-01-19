@@ -1,12 +1,11 @@
 package restaurant.data;
 
-import restaurant.CardItem;
 import restaurant.Table;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryTables implements Content {
+public class InMemoryTables implements ITable {
     private final List<Table> tables;
 
     public InMemoryTables() {
@@ -20,8 +19,4 @@ public class InMemoryTables implements Content {
         return tables;
     }
 
-    @Override
-    public List<CardItem> getCardItems() {
-        return null;
-    }
 }
