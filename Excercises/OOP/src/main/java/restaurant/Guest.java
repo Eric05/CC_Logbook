@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Guest {
     private final String name;
-    private final List<String> orders = new ArrayList<>();
+    private final List<CardItem> orders = new ArrayList<>();
 
     public Guest(String name) {
         this.name = name;
@@ -16,7 +16,7 @@ public class Guest {
         return name;
     }
 
-    public List<String> getOrders() {
+    public List<CardItem> getOrders() {
         return orders;
     }
 
@@ -42,6 +42,6 @@ public class Guest {
 
     private void order(List<CardItem> card) {
         var random = (int) (Math.random() * card.size());
-        orders.add(card.get(random).getName());
+        orders.add(card.get(random));
     }
 }

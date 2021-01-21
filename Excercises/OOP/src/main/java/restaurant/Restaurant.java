@@ -51,26 +51,28 @@ public class Restaurant {
 
     public Map<Integer, List<CardItem>> getOrders() {
         Map<Integer, List<CardItem>> orders = new HashMap<>();
+        List<Table> usedTables = tables.stream()
+                .filter(t -> !t.isFree())
+                .collect(Collectors.toList());
 
-        for (Table table : tables) {
-            var tableId = table.getId();
-            List<String> tableOrders = new ArrayList<>();
-            if (!table.isFree()) {
-                var group = table.getGroup().getGroup();
-                for (Guest guest : group) {
-                    tableOrders.addAll(guest.getOrders());
-                }
-                List<CardItem> orderItems = new ArrayList<>();
-                for (String tableOrder : tableOrders) {
-                    CardItem crd = card.stream().
-                            filter(c -> c.getName().equals(tableOrder)).
-                            findFirst().orElse(null);
-                    orderItems.add(crd);
-                }
-                orders.put(tableId, orderItems);
-            }
+        for (Table usedTable : usedTables) {
+            orders.putAll(getTableOrders(usedTable));
         }
         System.out.println("waitress takes orders");
+        return orders;
+    }
+
+    public Map<Integer, List<CardItem>> getTableOrders(Table table) {
+        var tableId = table.getId();
+        var group = table.getGroup().getGroup();
+        List<CardItem> tableOrders = new ArrayList<>();
+        Map<Integer, List<CardItem>> orders = new HashMap<>();
+
+        for (Guest guest : group) {
+            tableOrders.addAll(guest.getOrders());
+        }
+        orders.put(tableId, tableOrders);
+
         return orders;
     }
 

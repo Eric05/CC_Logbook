@@ -19,6 +19,12 @@ public class Table {
         group.setTable(this);
     }
 
+    public void freeTable(){
+        this.isFree = true;
+        this.group = null;
+        System.out.println("Group leaves table " + this.id);
+    }
+
     public boolean isFree() {
         return isFree;
     }
@@ -33,11 +39,5 @@ public class Table {
 
     public Group getGroup() {
         return group;
-    }
-
-    public void freeTable(){
-        this.isFree = true;
-        this.group = null;
-        System.out.println("Group leaves table " + this.id);
     }
 }
