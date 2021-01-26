@@ -35,14 +35,16 @@ public class DatabaseTest {
             System.out.println(lastname);
         }
 
-        // pure statements
+        // pure statements -> execute statement
         Statement statement = connect.createStatement();
 
         statement.executeUpdate("update students " +
                 "set firstname='little', lastname='john'" +
                 " where id=4");
-        statement.executeUpdate("delete from students where id=5");
+        // statement.executeUpdate("delete from students where id=5");
 
+
+        // fetch data
         ResultSet resultSet = statement
                 .executeQuery("select * from students");
 
