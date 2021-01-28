@@ -77,8 +77,8 @@ public class Simulation extends ThiefObserver {
         var allPersons = museum.getAllPersons();
         var rooms = museum.getRooms();
         for (Person visitor : allPersons) {
-            var newRoom = generateRandom(1, rooms.size());
-            visitor.changeRoom(rooms.get(newRoom));
+
+            visitor.changeRoom(rooms);
         }
     }
 
@@ -96,7 +96,7 @@ public class Simulation extends ThiefObserver {
     public void updateThieves() {
         for (Person p : museum.getAllPersons()) {
             if (p instanceof Thief && !thieves.contains(p)) {
-               thieves.add((Thief) p);
+                thieves.add((Thief) p);
             }
         }
         for (Thief p : thieves) {

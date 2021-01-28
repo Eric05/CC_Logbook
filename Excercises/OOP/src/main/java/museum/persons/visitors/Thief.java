@@ -34,8 +34,8 @@ public class Thief extends Person {
     }
 
     @Override
-    public void changeRoom(Room room) {
-        super.changeRoom(room);
+    public void changeRoom(List<Room> rooms) {
+        super.changeRoom(rooms);
         checkIsAlone();
     }
 
