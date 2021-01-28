@@ -3,15 +3,19 @@ package museum.persons;
 import museum.Room;
 
 public abstract class Person {
-    private final String name;
+    private String name = "";
     private Room actualRoom;
 
     public Person(String name) {
         this.name = name;
     }
 
-    public void changeRoom(Room room){
-        if (actualRoom != null){
+    public Person() {
+
+    }
+
+    public void changeRoom(Room room) {
+        if (actualRoom != null) {
             actualRoom.deletePerson(this);
         }
         actualRoom = room;
