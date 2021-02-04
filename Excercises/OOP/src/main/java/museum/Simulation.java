@@ -14,18 +14,27 @@ public class Simulation extends ThiefObserver {
     public static final String RED = "\033[0;31m";
 
     public static Calendar now = Calendar.getInstance();
+
     public static int numOfVisitors = 0;
     public static int numOfThieves = 0;
     public static int numOfGuards = 3;
 
     private final Museum museum;
     private final List<Thief> thieves = new ArrayList<>();
+    private final Calendar open;
+    private final Calendar close;
 
-    public Simulation(String name, int rooms, int arts, int guards) {
+    public Simulation(String name, int rooms, int arts, int guards, int openTime, int closeTime) {
         museum = new Museum(name, rooms, arts);
         addGuards(guards);
-        now.set(Calendar.HOUR_OF_DAY, 8);
-        now.set(Calendar.MINUTE, 0);
+
+        open = (Calendar) now.clone();
+        close = (Calendar) now.clone();
+
+        open.set(Calendar.HOUR_OF_DAY, openTime);
+        open.set(Calendar.MINUTE, 0);
+        close.set(Calendar.HOUR_OF_DAY, closeTime);
+        close.set(Calendar.MINUTE, 0);
     }
 
     public void printGreeting() {
@@ -34,25 +43,17 @@ public class Simulation extends ThiefObserver {
 
     public void dailyRoutine(int minVisitors, int maxVisitors, int thiefPercent, int interval) {
         printGreeting();
+        sleep(5000);
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ignored) {
-        }
-
-        for (int i = 0; i < interval; i++) {
-            now.add(Calendar.MINUTE, 15);
+        while (open.compareTo(close) < 0) {
+            open.add(Calendar.MINUTE, interval);
             printTime();
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ignored) {
-            }
+            sleep(1000);
 
             var visitors = generateVisitors(minVisitors, maxVisitors, thiefPercent);
             System.out.println("-> new visitors: + " + visitors);
 
-            if (i > 1) {
+            if (numOfVisitors > 1) {
                 var actualVisitors = museum.getAllPersons().size();
                 if (minVisitors < actualVisitors) {
                     var leaving = leaveMuseum(minVisitors, actualVisitors);
@@ -61,15 +62,29 @@ public class Simulation extends ThiefObserver {
             }
             System.out.println("-> visitors in museum: " + (museum.getAllPersons().size() - numOfGuards));
 
-            updateThieves();
+            initOrUpdateThieves();
             visitRooms();
             printGuards();
             checkLonelyThieves();
+            sleep(3000);
+        }
+    }
 
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ignored) {
+    private void sleep(int i) {
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException ignored) {
+        }
+    }
+
+    public void initOrUpdateThieves() {
+        for (Person p : museum.getAllPersons()) {
+            if (p instanceof Thief && !thieves.contains(p)) {
+                thieves.add((Thief) p);
             }
+        }
+        for (Thief p : thieves) {
+            p.attach(this);
         }
     }
 
@@ -77,7 +92,6 @@ public class Simulation extends ThiefObserver {
         var allPersons = museum.getAllPersons();
         var rooms = museum.getRooms();
         for (Person visitor : allPersons) {
-
             visitor.changeRoom(rooms);
         }
     }
@@ -93,17 +107,6 @@ public class Simulation extends ThiefObserver {
         System.out.println();
     }
 
-    public void updateThieves() {
-        for (Person p : museum.getAllPersons()) {
-            if (p instanceof Thief && !thieves.contains(p)) {
-                thieves.add((Thief) p);
-            }
-        }
-        for (Thief p : thieves) {
-            p.attach(this);
-        }
-    }
-
     private void checkLonelyThieves() {
         var rooms = museum.getRooms();
 
@@ -116,22 +119,24 @@ public class Simulation extends ThiefObserver {
                 Thief t = (Thief) thieves.get(0);
                 System.out.println(RED + t.getName() + " alone in " + room.getNumber() + RESET);
                 t.steal();
+                thieves.remove(t);
+                museum.getAllPersons().remove(t);
             }
         }
     }
 
     private void printTime() {
         System.out.println("--------------------------------------------");
-        System.out.println(now.getTime());
+        System.out.println(open.getTime());
         System.out.println("--------------------------------------------");
     }
 
     private int generateVisitors(int min, int max, int thiefPercent) {
         var allPersons = generateRandom(min, max);
-        var thiefs = allPersons * (double) thiefPercent / 100.0;
+        var thieves = allPersons * (double) thiefPercent / 100.0;
 
         for (int i = 0; i < allPersons; i++) {
-            if (i < thiefs) {
+            if (i < thieves) {
                 numOfThieves++;
                 Thief t = new Thief("thief_" + numOfThieves);
                 museum.getAllPersons().add(t);

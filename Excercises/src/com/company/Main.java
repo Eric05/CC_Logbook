@@ -1,28 +1,49 @@
 package com.company;
 
-
-import com.company.November.Day_29.Human;
-import com.company.November.Day_29.View;
-import com.company.November.MovingKnight.GameController;
-import com.company.November.camera.Camera;
-import com.company.November.camera.CameraView;
-import com.company.November.camera.MockPicture;
-
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static <T> void main(String[] args) throws IOException {
+
+
+           Thread t1 = new Thread( () -> new Timer().schedule(new TimerTask(){
+            @Override
+            public void run(){
+                System.out.println("A Kiss every 5 seconds");
+            }
+        },0,2000));
+
+        t1.start();
+
+
+        var list = new ArrayList<Integer>();
+        list.add(4);
+        list.add(5);
+        list.add(7);
+
+        List<Integer> list2 = new ArrayList<>();
+        list2.addAll(list);
+        List<T> copy = (List<T>) List.copyOf(list);
+
+        for (var o : list2) {
+            if (o < 6){
+                list.remove(o);
+            }
+        }
+        var openingTime = 8;
+        var closingTime = 16;
+        var interval = 15;
+
+        loopByGregorianDate(openingTime,closingTime,interval);
+
 
         String[] names = new String[]{"a", "v", "w"};
+
         var res = linearSearch(names, "v");
         System.out.println(res);
 
@@ -30,6 +51,23 @@ public class Main {
         File file = new File(path);
         file.createNewFile();
         Files.writeString(Path.of(path), "Hallo");*/
+    }
+
+    private static void loopByGregorianDate(int openingTime, int closingTime, int intervalByMinutes) {
+        Calendar now = Calendar.getInstance();
+
+        var open  = (Calendar) now.clone();
+        var close = (Calendar)now.clone();
+
+        open.set(Calendar.HOUR_OF_DAY, openingTime);
+        open.set(Calendar.MINUTE, 0);
+        close.set(Calendar.HOUR_OF_DAY, closingTime);
+        close.set(Calendar.MINUTE,0);
+
+        while (open.compareTo(close) < 0) {
+            open.add(Calendar.MINUTE, intervalByMinutes);
+            System.out.println(open.getTime());
+        }
     }
 
     public static int linearSearch(String[] strings, String string) {

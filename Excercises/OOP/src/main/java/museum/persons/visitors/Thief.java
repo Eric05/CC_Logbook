@@ -28,8 +28,7 @@ public class Thief extends Person {
 
     public void checkIsAlone() {
         if (this.getActualRoom().getPersons().size() == 1) {
-            boolean isAlone = true;
-            notifyAllObservers(isAlone);
+            notifyAllObservers();
         }
     }
 
@@ -39,11 +38,9 @@ public class Thief extends Person {
         checkIsAlone();
     }
 
-    private void notifyAllObservers(boolean isAlone) {
-        if (isAlone) {
-            for (ThiefObserver observer : observers) {
-                observer.update();
-            }
+    private void notifyAllObservers() {
+        for (ThiefObserver observer : observers) {
+            observer.update();
         }
     }
 }
