@@ -8,15 +8,19 @@ public class CopyCollections {
 
         ArrayList<Object> list = new ArrayList<>();
 
+        //region List
         list.add("A");
         list.add("B");
         list.add(new Date());
         list.add("C");
         list.add("D");
+        //endregion
 
         // shallow copy -> references are copied; each change of copy changes the original
-        var clone = (ArrayList<Object>) list.clone();
         var clone1 = new ArrayList<>(list);
+
+        // deprecated -> can throw has protected access
+        var clone = (ArrayList<Object>) list.clone();
 
         // deep copy -> creates independent new object
         var deepClone = new ArrayList<>();

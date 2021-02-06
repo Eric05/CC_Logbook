@@ -21,7 +21,10 @@ public class WichtelTest {
             var x = c.getWichtel(persons);
             matches.addAll(x);
         }
-        matches = matches.stream().filter((s) -> s.split(" ")[0].equals(s.split(" ")[1])).collect(Collectors.toList());
+        matches = matches.stream()
+                .filter((s) -> s.split(" ")[0].equals(s.split(" ")[1]))
+                .collect(Collectors.toList());
+
         return matches.size() == 0;
     }
 
