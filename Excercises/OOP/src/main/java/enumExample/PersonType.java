@@ -1,5 +1,6 @@
 package enumExample;
 
+// enum with String code
 public enum PersonType {
     GUARD("1"),
     VISITOR("2"),

@@ -29,13 +29,7 @@ public class GUI_DnsConverter {
         b_click.setBackground(Color.black);
         b_click.setForeground(Color.yellow);
 
-        b_click.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                doAction(tf);
-            }
-        });
+        b_click.addActionListener(actionEvent -> doAction(tf));
 
         // button goodbye
 

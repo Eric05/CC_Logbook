@@ -2,7 +2,7 @@ package kindergarten.animals;
 
 import kindergarten.persons.Child;
 
-public class Cat extends Animal implements IGoToChild {
+public class Cat extends Animal {
 
     public Cat(String name) {
         super(name);

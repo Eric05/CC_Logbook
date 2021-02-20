@@ -70,7 +70,6 @@ public class Simulation {
         for (int i = 0; i < animals.size(); i++) {
             animals.get(i).goToChild(childrenCopy.get(i));
         }
-
     }
 
     private void takeCare() {

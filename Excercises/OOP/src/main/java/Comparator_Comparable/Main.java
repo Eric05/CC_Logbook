@@ -1,9 +1,6 @@
 package Comparator_Comparable;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /***
@@ -15,6 +12,21 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+
+        // 1. create class man with name and size
+
+        // 2. in Main create vector
+        Vector<Man> men = new Vector<>();
+        men.add(new Man("a", 160));
+        men.add(new Man("x", 180));
+        men.add(new Man("b", 170));
+        men.add(new Man("c", 175));
+
+        // sort by size
+        men.sort(Comparator.comparingInt(Man::getSize));
+
+        // sort by name and (optional) reverse
+        men.sort(Comparator.comparing(Man::getName).reversed());
 
         var allPlayers = new InMemoryPlayers();
         var list = allPlayers.getPlayers();
@@ -32,7 +44,8 @@ public class Main {
                 .comparing(Player::getRanking);
 
         // by 1. using PlayerNameLengthComparator Class, 2. using variable, 3. using lambda
-        list = list.stream()
+        // new var for creating new list (non destructive ) otherwise list = list.stream()...
+        var sortedList = list.stream()
                 .sorted(new PlayerNameLengthComparator().thenComparing(byRanking).thenComparing(p -> p.getAge()))
                 .collect(Collectors.toList());
 

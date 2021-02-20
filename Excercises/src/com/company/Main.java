@@ -8,6 +8,35 @@ public class Main {
 
     public static <T> void main(String[] args) throws IOException {
 
+        int x;
+
+        // Creating a List of Integers 
+        List<Integer> lis = Arrays.asList(3, 5, 7, 9, 11);
+
+        // Using Stream findFirst() 
+        Optional<Integer> answer = lis.stream().findFirst();
+
+        // if the stream is empty, an empty 
+        // Optional is returned. 
+        if (answer.isPresent()) {
+            x = answer.get();
+            System.out.println(((Object)x).getClass().getName() );
+        }
+        else {
+            System.out.println("no value");
+        }
+        
+        Vector<Integer> nums = new Vector<>();
+        nums.add(2);
+        nums.add(5);
+        nums.add(4);
+        int counter = nums.size();
+
+        while (counter-- > 0){
+            System.out.println(nums.get(counter));
+        }
+        Collections.sort(nums);
+        Collections.reverse(nums);
         Object[] array = {1, 2, new Object[]{3, 4, new Object[]{5}, 6, 7}, 8, 9, 10};
 
         var l = getFlatenedList(array);
@@ -94,7 +123,7 @@ public class Main {
         return list;
     }
 
-    public static List<Object> flat2(Object[] arr, List<Object> list) {
+    private static List<Object> flat2(Object[] arr, List<Object> list) {
 
         for (Object o : arr) {
             if (!o.getClass().isArray()) {
