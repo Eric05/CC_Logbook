@@ -1,5 +1,7 @@
 package com.company;
 
+import org.junit.Test;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -7,6 +9,10 @@ import java.util.*;
 public class Main {
 
     public static <T> void main(String[] args) throws IOException {
+
+
+        int num1 = 34;
+        int num2 = 34;
 
         int x;
 

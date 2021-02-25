@@ -18,6 +18,7 @@ public class WriteToFile {
             bw.close();
             fw.close();
         } catch (IOException e) {
+            ErrorLogger.getInstance();
             ErrorLogger.writeError("Error when writing to File");
         }
     }
