@@ -23,28 +23,8 @@ public class CsvUtil {
         return null;
     }
 
-    public static void loadCsvByLine(Path file, Consumer<String> doWork) {
-        Scanner csvFile;
-
-        try {
-            csvFile = new Scanner(file, StandardCharsets.UTF_8);
-            while (csvFile.hasNextLine()) {
-                var line = csvFile.nextLine();
-                if (line.length() > 0) {
-                    doWork.accept(line);
-                }
-            }
-            csvFile.close();
-        } catch (IOException e) {
-            Logger.getInstance();
-            Logger.log(Logger.LogType.ERROR, "Error loading the csv " + file.toString() + e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static <T> void writeToCsv(Path path, List<T> dto) throws IOException {
-        for (T d : dto) {
+    public static <T> void writeToCsv(Path path, List<T> dtos) throws IOException {
+        for (T d : dtos) {
             appendText(d.toString(), String.valueOf(path));
         }
     }
@@ -68,4 +48,25 @@ public class CsvUtil {
             fw.close();
         }
     }
+
+    public static void loadCsvByLine(Path file, Consumer<String> doWork) {
+        Scanner csvFile;
+
+        try {
+            csvFile = new Scanner(file, StandardCharsets.UTF_8);
+            while (csvFile.hasNextLine()) {
+                var line = csvFile.nextLine();
+                if (line.length() > 0) {
+                    doWork.accept(line);
+                }
+            }
+            csvFile.close();
+        } catch (IOException e) {
+            Logger.getInstance();
+            Logger.log(Logger.LogType.ERROR, "Error loading the csv " + file.toString() + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

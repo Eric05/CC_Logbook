@@ -1,5 +1,7 @@
 package csv.DTO;
 
+import csv.Config;
+
 public class TopCasesDTO implements Comparable {
     private final String country;
     private final int cases;

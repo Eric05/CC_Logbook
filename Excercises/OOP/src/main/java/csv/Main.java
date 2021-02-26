@@ -1,23 +1,19 @@
 package csv;
 
-import csv.DTO.Config;
-
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Evaluator ev = new Evaluator();
-        Mapper m = new Mapper(Config.CSV_PATH);
-
         long start = System.currentTimeMillis();
-        var csv = m.getTopCaseDTOs();
-        var topList = ev.getTopCases(csv);
+
+        Evaluator ev = new Evaluator(Config.CSV_PATH);
+        var topList = ev.getTopCases();
         CsvUtil.writeToCsv(Config.OUTPUT_PATH, topList);
 
         long stop = System.currentTimeMillis();
-        System.out.println(csv.size() + " lines proceeded in " + (stop - start) + " ms.");
+        System.out.println(ev.getFilesize() + " lines proceeded in " + (stop - start) + " ms.");
     }
 
     // if ram requires proceeding line by line

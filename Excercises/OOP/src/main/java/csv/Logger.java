@@ -1,14 +1,11 @@
 package csv;
 
-import csv.DTO.Config;
-
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Logger {
 
     private static Logger instance;
-    // ----------------------
 
     private Logger() {
 
@@ -29,7 +26,6 @@ public class Logger {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     // type as inner class

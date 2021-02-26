@@ -2,21 +2,34 @@ package csv;
 
 import csv.DTO.TopCasesDTO;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.*;
 
 
 public class Evaluator {
 
-    public List<TopCasesDTO> getTopCases(List<TopCasesDTO> data) {
+    private Mapper mapper;
+    private long filesize;
 
-        List<TopCasesDTO> sorted = new ArrayList<>();
+    public Evaluator(Path path ) {
+        this.mapper = new Mapper(path);
+    }
+
+    public long getFilesize() throws IOException {
+        return mapper.getTopCaseDTOs().size();
+    }
+
+    public List<TopCasesDTO> getTopCases() {
+        var data = mapper.getTopCaseDTOs();
+        List<TopCasesDTO> topCasesDTOS = new ArrayList<>();
         var entries = createTopCasesMap(data).entrySet();
 
         for (Map.Entry<String, Integer> entry : entries) {
-            sorted.add(new TopCasesDTO(entry.getKey(), entry.getValue()));
+            topCasesDTOS.add(new TopCasesDTO(entry.getKey(), entry.getValue()));
         }
-        Collections.sort(sorted);
-        return sorted;
+        Collections.sort(topCasesDTOS);
+        return topCasesDTOS;
     }
 
     private Map<String, Integer> createTopCasesMap(List<TopCasesDTO> data) {
@@ -32,6 +45,4 @@ public class Evaluator {
         }
         return resultSet;
     }
-
-
 }
