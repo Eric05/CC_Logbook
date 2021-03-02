@@ -5,6 +5,7 @@ import csv.DTO.TopCasesDTO;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Evaluator {
@@ -45,4 +46,12 @@ public class Evaluator {
         }
         return resultSet;
     }
+
+/*
+ Create map with lamda
+ Map<String,Integer> map = lines.stream()
+            .map(entry -> entry.split(";"))
+            .collect(Collectors.groupingBy(entry -> entry[0],
+                    Collectors.summingInt(entry -> Integer.parseInt(entry[1]))));
+                    */
 }

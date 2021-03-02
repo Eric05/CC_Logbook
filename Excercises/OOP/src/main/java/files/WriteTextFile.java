@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +31,10 @@ public class WriteTextFile {
 
     public static void main(String[] args) throws IOException {
 
-        addFile("Hello World");
+        List<String> lines = Arrays.asList(new String[]{"A;200", "B;122", "A;120", "B;40"});
+        Files.write(basePath.resolve("country"), lines);
+
+               addFile("Hello World");
     }
 
     public static void addFile(String text) throws IOException {
@@ -63,6 +67,5 @@ public class WriteTextFile {
     private static void writeTextToFile(Path path, String text) throws IOException {
         FileWriter fw = new FileWriter(String.valueOf(path));
         fw.write(text);
-        fw.close();
     }
 }

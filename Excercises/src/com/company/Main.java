@@ -2,14 +2,52 @@ package com.company;
 
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Main {
 
     public static <T> void main(String[] args) throws IOException {
 
+        var dir = Paths.get(System.getProperty("user.dir"));
+        var path = dir.resolve("Persons");
+
+        var walk = Files.walk(path, 5);
+        var  fi = new File(String.valueOf(dir));
+        var li = fi.list();
+        Arrays.stream(li).forEach(System.out::println);
+
+
+        var file = Paths.get(String.valueOf(path.resolve("List.txt")));
+        Files.write(file, ("Hello Person"+ System.lineSeparator()).getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+
+        var lines = Files.lines(path.resolve("List.txt")).collect(Collectors.toList());
+
+        if (Files.exists(path)){
+            var atr = Files.readAttributes(path, BasicFileAttributes.class);
+            System.out.println(atr.creationTime().toString() + " " + atr.size()) ;
+        }
+
+        String s = null;
+        System.out.println(s.isBlank());
+
+        List<String> lineList = Arrays.asList(new String[]{"A;200", "B;122", "A;120", "B;40"});
+
+        Map<String,Integer> map = lines.stream()
+                .map(entry -> entry.split(";"))
+                .collect(Collectors.groupingBy(entry -> entry[0],
+                        Collectors.summingInt(entry -> Integer.parseInt(entry[1]))));
+
+        List<Integer> values = new ArrayList(map.values());
+        values.sort(Comparator.comparingInt(a-> (int) a).reversed());
 
         int num1 = 34;
         int num2 = 34;

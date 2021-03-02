@@ -9,12 +9,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ReadFromFile {
 
     public static List<String> readSmallFileToList(String src) throws IOException {
         try {
-            return Files.readAllLines(Path.of(src));
+            // return Files.readAllLines(Path.of(src));
+            return Files.lines(Path.of(src)).collect(Collectors.toList());
         } catch (IOException e) {
             ErrorLogger.getInstance();
             ErrorLogger.writeError("Error when reading file");
@@ -33,11 +35,14 @@ public class ReadFromFile {
             ErrorLogger.getInstance();
             ErrorLogger.writeError("Error when reading file");
         }
-        while ((line = Objects.requireNonNull(br).readLine()) != null) {
+        while (br != null && br.ready()) {
+            line = br.readLine();
             sb.append(line).append("\n");
         }
 
-        br.close();
+        if (br != null) {
+            br.close();
+        }
         return sb.toString();
     }
 
