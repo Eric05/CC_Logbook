@@ -14,20 +14,28 @@ public class DatabaseTest {
         try {
             connect = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/test?"
-                            + "user=root&password=my-secret-pw");
+                            + "user=root&password=root"); //&password=my-secret-pw
         } catch (SQLException throwables) {
             throw new SQLException();
         }
 
+        preparedStatement = connect.prepareStatement("select * from testtable");
+
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            String number = rs.getString("firstname");
+            System.out.println(number);
+        }
         // prepared statements
             // complex statement with parameters
-        preparedStatement = connect.prepareStatement("insert into students values(default,?,?)");
-        preparedStatement.setString(1, "king");
-        preparedStatement.setString(2, "kong");
+        preparedStatement = connect.prepareStatement("insert into student values(default,?,?)");
+        preparedStatement.setString(1, "kaa");
+        preparedStatement.setString(2, "waa");
         preparedStatement.executeUpdate();
 
             // simple statement
-        preparedStatement = connect.prepareStatement("SELECT * from students where id <= 3");
+        preparedStatement = connect.prepareStatement("SELECT * from student where id <= 3");
         ResultSet resultSet1 = preparedStatement.executeQuery();
 
         while (resultSet1.next()) {
@@ -38,7 +46,7 @@ public class DatabaseTest {
         // pure statements -> execute statement
         Statement statement = connect.createStatement();
 
-        statement.executeUpdate("update students " +
+        statement.executeUpdate("update student " +
                 "set firstname='little', lastname='john'" +
                 " where id=4");
         // statement.executeUpdate("delete from students where id=5");
@@ -46,7 +54,7 @@ public class DatabaseTest {
 
         // fetch data
         ResultSet resultSet = statement
-                .executeQuery("select * from students");
+                .executeQuery("select * from student");
 
         while (resultSet.next()) {
 

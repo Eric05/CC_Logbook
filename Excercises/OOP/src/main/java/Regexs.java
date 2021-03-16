@@ -10,7 +10,7 @@ public class Regexs {
 
     public static void main(String[] args) {
 
-
+ // (?i) -> case insensitive
     }
 
     public static String DeleteSilentH(String str) {

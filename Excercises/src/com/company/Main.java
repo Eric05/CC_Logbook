@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,7 +19,26 @@ public class Main {
     public static <T> void main(String[] args) throws IOException {
 
         var dir = Paths.get(System.getProperty("user.dir"));
-        var path = dir.resolve("Persons");
+        var path = dir.resolve("Persons//List.txt");
+int value = 5;
+var bin = Integer.toBinaryString(value);
+        System.out.println(String.format("%8s ",bin).replaceAll(" ","0") + "-");
+        StringBuilder hex = new StringBuilder();
+        StringBuilder input = new StringBuilder();
+
+        try (InputStream inputStream = Files.newInputStream(path)) {
+            while ((value = inputStream.read()) != -1) {
+
+                hex.append(String.format("%8s ", value));
+
+                //If the character is unable to convert, just prints a dot "."
+                if (!Character.isISOControl(value)) {
+                    input.append((char) value);
+                } else {
+                    input.append(".");
+                }
+            }
+        }
 
         var walk = Files.walk(path, 5);
         var  fi = new File(String.valueOf(dir));

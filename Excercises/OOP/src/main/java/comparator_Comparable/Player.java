@@ -1,4 +1,4 @@
-package Comparator_Comparable;
+package comparator_Comparable;
 
 
 public class Player implements Comparable<Player>{
