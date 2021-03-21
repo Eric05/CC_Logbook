@@ -1,5 +1,7 @@
 package notes.application;
 
+import notes.application.services.NoteService;
+import notes.application.services.UserService;
 import notes.persistence.models.Note;
 import notes.persistence.models.User;
 import notes.persistence.repos.NoteRepo;
@@ -27,8 +29,9 @@ public class Routine {
     }
 
     public void doRoutine() {
+        NoteRepo repo = new NoteService();
+
         while (true) {
-            NoteRepo repo = new NoteService();
             var notes = repo.getNotes();
             var map = getMapByDay(notes);
 
@@ -93,8 +96,7 @@ public class Routine {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        var name = (user == null) ? "Anonym" : user.getName();
-        return name;
+        return (user == null) ? "Anonym" : user.getName();
     }
 
     private void doRegistration() {
@@ -106,7 +108,8 @@ public class Routine {
         var pw = view.getInput();
         reg.registerUser(name, pw);
 
-        actual = new User(name);
+        UserRepo userRepo = new UserService();
+        actual = userRepo.getUser(name);
         view.printInfo("Welcome " + actual.getName());
     }
 
@@ -151,10 +154,9 @@ public class Routine {
                         Collectors.groupingBy(Note::getUserid,
                                 Collectors.mapping((Note n) -> n, toList())));
 
-        var postsByUserid = groupedByUser.entrySet().stream()
+        return groupedByUser.entrySet().stream()
                 .filter(x -> x.getKey() == userid)
-                .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()));
-        return postsByUserid;
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     private Map<String, List<Note>> getMapByDay(List<Note> notes) {

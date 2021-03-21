@@ -1,12 +1,5 @@
 package notes.view;
 
-import notes.application.UserService;
-import notes.persistence.models.Note;
-import notes.persistence.models.User;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class View {

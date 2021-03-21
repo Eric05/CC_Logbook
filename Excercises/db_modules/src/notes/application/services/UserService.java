@@ -1,4 +1,4 @@
-package notes.application;
+package notes.application.services;
 
 import notes.persistence.MySqlConnector_Timezone;
 import notes.persistence.models.User;

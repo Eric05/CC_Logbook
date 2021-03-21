@@ -1,4 +1,4 @@
-package notes.application;
+package notes.application.services;
 
 import notes.persistence.MySqlConnector_Timezone;
 import notes.persistence.models.Note;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NoteService implements NoteRepo {
-    private final String conString = "jdbc:mysql://localhost:3306/notes?user=root&password=root&serverTimezone=UTC";
+    private final String conString = "jdbc:mysql://localhost:3306/notes?user=root&password=root&serverTimezone=Europe/Berlin";
 
     @Override
     public Note getNoteById(int id) {

@@ -1,7 +1,7 @@
 package notes.tests;
 
-import notes.application.NoteService;
-import notes.application.UserService;
+import notes.application.services.NoteService;
+import notes.application.services.UserService;
 import notes.persistence.models.Note;
 import notes.persistence.repos.NoteRepo;
 import notes.persistence.repos.UserRepo;
@@ -17,16 +17,16 @@ public class Test {
         NoteRepo repo = new NoteService();
 
         var notes = repo.getNotes();
-   getMapByUserid(notes, 2);
+        getMapByUserid(notes, 2);
 
 
-        System.out.println("");
+        System.out.println();
     }
 
     private static Map<Integer, List<Note>> getMapByUserid(List<Note> notes, int userid) {
         UserRepo userRepo = new UserService();
 
-        var groupedByUser =  notes.stream()
+        var groupedByUser = notes.stream()
                 .collect(
                         Collectors.groupingBy(Note::getUserid,
                                 Collectors.mapping((Note n) -> n, toList())));

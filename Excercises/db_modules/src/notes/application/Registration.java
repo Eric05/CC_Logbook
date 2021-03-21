@@ -1,5 +1,6 @@
 package notes.application;
 
+import notes.application.services.UserService;
 import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.SecretKey;

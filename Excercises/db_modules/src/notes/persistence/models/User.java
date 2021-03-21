@@ -5,8 +5,8 @@ import java.util.List;
 
 public class User {
     private final List<Note> notes = new ArrayList<>();
-    private int id;
     private final String name;
+    private int id;
     private String password;
 
     public User(String name) {
