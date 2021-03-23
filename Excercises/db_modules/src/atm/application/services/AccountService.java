@@ -91,4 +91,22 @@ public class AccountService implements AccountRepo {
         return balance;
     }
 
+    public void setLastStatement(String number) {
+        con = MySqlConnector_Timezone.connect(CON_STR);
+        PreparedStatement preparedStatement;
+
+        try {
+            preparedStatement = con.prepareStatement("SET SQL_SAFE_UPDATES = 0;\n" +
+                    "update account \n" +
+                    "set lastStatement= current_timestamp()\n" +
+                    "where accountnumber = ?");
+            preparedStatement.setString(1, number);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            notes.persistence.MySqlConnector_Timezone.closeCon(con);
+        }
+    }
+
 }

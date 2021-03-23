@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface TransactionRepo {
     List<Transaction> getTransactionsByNumber(String number);
+
+    void doDeposit(String accountnumber, Double deposit);
+
+    void doWithdraw(String accountnumber, Double withdraw);
+
+    List<Transaction> getLastTransactionsByNumber(String s);
 }
