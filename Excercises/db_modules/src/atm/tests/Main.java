@@ -10,13 +10,16 @@ import atm.persistence.repos.AccountRepo;
 import atm.persistence.repos.TransactionRepo;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Properties;
 
 public class Main {
 
     public static void main(String[] args) {
-        Path workingDir = Path.of(System.getProperty("user.dir"));
-        var db = GetConfig.getProperty(workingDir + File.separator + "atm.properties", "db.user");
+
+        String workingDir = System.getProperty("user.dir") + File.separator + "atm.properties";
+        var db = GetConfig.getProperty(workingDir, "db.user");
         View view = new View();
         AccountRepo accountRepo = new AccountService();
         TransactionRepo transRepo = new TransactionService();
@@ -25,7 +28,7 @@ public class Main {
         transRepo.doDeposit("2000054321", 87.95);
         transRepo.doWithdraw("2000054321", 100.9);
         //
-        var amount = accountRepo.getBalance("2000012345");
+        var amount = accountRepo.getBalance("2000054321");
         var list = transRepo.getLastTransactionsByNumber("2000054321");
         var li = CreateStatement.create(list, amount);
         WriteStatementToFile.write(li);

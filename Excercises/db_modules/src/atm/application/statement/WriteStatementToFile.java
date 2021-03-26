@@ -1,5 +1,7 @@
 package atm.application.statement;
 
+import atm.application.GetConfig;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,19 +12,23 @@ import java.util.Collections;
 
 public class WriteStatementToFile {
 
-    private static final Path workingDir = Path.of(System.getProperty("user.dir"));
+    private static final String fileOutput = GetConfig.PATH_TO_WORKDIR + File.separator + GetConfig.getProperty(GetConfig.PATH_TO_CONFIG, "file.output");
 
     public static void write(String res) {
-        LocalDateTime date = LocalDateTime.now();
-        var cleanDate = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
-        String formattedDate = date.format(cleanDate);
-        var path = workingDir + File.separator + formattedDate;
+        String path = createFilenameByDate();
 
         try {
             Files.write(Path.of(path), Collections.singleton(res));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String createFilenameByDate() {
+        LocalDateTime date = LocalDateTime.now();
+        var cleanDate = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String formattedDate = date.format(cleanDate)+ "_statement";
+        return fileOutput + File.separator + formattedDate;
     }
 
 }

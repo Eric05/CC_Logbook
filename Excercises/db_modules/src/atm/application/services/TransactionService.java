@@ -12,12 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionService implements TransactionRepo {
-    private final String CON_STR = "jdbc:mysql://localhost:3306/bank?user=root&password=root&serverTimezone=Europe/Berlin";
     private Connection con;
 
     @Override
     public List<Transaction> getTransactionsByNumber(String num) {
-        con = MySqlConnector_Timezone.connect(CON_STR);
+        con = MySqlConnector_Timezone.connect();
 
         List<Transaction> transactions = new ArrayList<>();
         PreparedStatement ps;
@@ -45,7 +44,7 @@ public class TransactionService implements TransactionRepo {
 
     @Override
     public void doDeposit(String accountnumber, Double deposit) {
-        con = MySqlConnector_Timezone.connect(CON_STR);
+        con = MySqlConnector_Timezone.connect();
         PreparedStatement preparedStatement;
 
         try {
@@ -62,7 +61,7 @@ public class TransactionService implements TransactionRepo {
 
     @Override
     public void doWithdraw(String accountnumber, Double withdraw) {
-        con = MySqlConnector_Timezone.connect(CON_STR);
+        con = MySqlConnector_Timezone.connect();
         PreparedStatement preparedStatement;
 
         try {
@@ -79,7 +78,7 @@ public class TransactionService implements TransactionRepo {
 
 
     public List<Transaction> getLastTransactionsByNumber(String num) {
-        con = MySqlConnector_Timezone.connect(CON_STR);
+        con = MySqlConnector_Timezone.connect();
 
         List<Transaction> transactions = new ArrayList<>();
         PreparedStatement ps, ps1;

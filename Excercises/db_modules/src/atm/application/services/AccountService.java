@@ -11,13 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountService implements AccountRepo {
-    private final String CON_STR = "jdbc:mysql://localhost:3306/bank?user=root&password=root&serverTimezone=Europe/Berlin";
     private Connection con;
-
 
     @Override
     public boolean isLoginValid(String accountNumber, String pin) {
-        con = MySqlConnector_Timezone.connect(CON_STR);
+        con = MySqlConnector_Timezone.connect();
 
         try {
 
@@ -42,7 +40,7 @@ public class AccountService implements AccountRepo {
 
     @Override
     public List<String> getTransactions(String num) {
-        con = MySqlConnector_Timezone.connect(CON_STR);
+        con = MySqlConnector_Timezone.connect();
 
         List<String> transactions = new ArrayList<>();
         PreparedStatement ps;
@@ -71,7 +69,7 @@ public class AccountService implements AccountRepo {
 
     @Override
     public String getBalance(String number) {
-        con = MySqlConnector_Timezone.connect(CON_STR);
+        con = MySqlConnector_Timezone.connect();
 
         String balance = "";
         PreparedStatement ps;
@@ -92,7 +90,7 @@ public class AccountService implements AccountRepo {
     }
 
     public void setLastStatement(String number) {
-        con = MySqlConnector_Timezone.connect(CON_STR);
+        con = MySqlConnector_Timezone.connect();
         PreparedStatement preparedStatement;
 
         try {
